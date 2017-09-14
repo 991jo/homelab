@@ -1,0 +1,38 @@
+- name: install basic packages
+  apt:
+      update_cache: yes
+      cache_valid_time: 86400 #1 day
+      state: present
+      name: "{{ item }}"
+  with_items:
+    - git
+    - curl
+    - ncdu
+    - htop
+    - tree
+    - python3
+    - ipython3
+    - screen
+    - tmux
+    - vim
+    - netcat-traditional
+    - unzip
+    - lsof
+    - pwgen
+    - iftop
+    - bmon
+    - dstat
+    - dnsutils
+    - mtr
+    - tcpdump
+    - traceroute
+    - whois
+    - prometheus-node-exporter
+    - parted
+
+
+- name: enable and start prometheus-node-exporter
+  systemd:
+    name: prometheus-node-exporter
+    enabled: yes      
+    state: started

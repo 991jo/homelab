@@ -1,0 +1,39 @@
+- name: install grafana repo key
+  apt_key:
+      url: https://packagecloud.io/gpg.key
+      state: present
+
+- name: install python-apt and python3-apt and apt-transport-https
+  apt:
+      update_cache: yes
+      state: present
+      name: "{{ item }}"
+  with_items:
+      - python-apt
+      - python3-apt
+      - apt-transport-https
+
+
+- name: install grafana repo
+  apt_repository:
+      repo: deb https://packagecloud.io/grafana/stable/debian/ jessie main
+      state: present
+
+
+- name: install prometheus and grafana
+  apt:
+      update_cache: yes
+      state: present
+      name: "{{ item }}"
+  with_items:
+      - prometheus
+      - grafana
+      
+- name: enable and start prometheus and grafana
+  systemd:
+      state: started
+      enabled: yes
+      name: "{{ item }}"
+  with_items:
+      - prometheus
+      - grafana-server

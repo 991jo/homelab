@@ -1,0 +1,5 @@
+- name: copy proxy config
+  copy:
+    dest: /etc/apt/apt.conf.d/10proxy
+    src: 10proxy
+    force: yes

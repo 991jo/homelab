@@ -1,0 +1,14 @@
+- include: basic.yml
+
+- name: install apt-cacher-ng
+  hosts: apt-cache-1
+  user: root
+  roles:
+      - apt-cacher-ng
+
+- name: install prometheus
+  hosts: prometheus-1
+  user: root
+  roles:
+      - prometheus
+

@@ -1,0 +1,7 @@
+- hosts: all
+  user: root
+  roles:
+    - default-packages/
+    - apt-cache-proxy-conf
+
+

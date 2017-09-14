@@ -1,0 +1,11 @@
+- name: Install apt-cacher-ng
+  apt:
+      name: apt-cacher-ng
+      update_cache: yes
+      state: present
+
+- name: start apt-cacher-ng
+  systemd:
+    name: apt-cacher-ng
+    state: started
+    enabled: yes
